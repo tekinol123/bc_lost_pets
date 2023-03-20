@@ -16,7 +16,7 @@ class Scraper:
         soup = bs4.BeautifulSoup(r, 'html.parser')
         soup = soup.select('.searchNameHeading')
         
-        return soup[2]
+        return soup
 
-test = Scraper()
-print(test.scrape())
+test = Scraper().scrape()
+test = list(test)
