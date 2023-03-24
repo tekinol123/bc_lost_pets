@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import re
 import json
-
+import pandas as pd
 
 class Scraper:
     url = 'http://bcspcapets.shelterbuddy.com/search/searchResults.asp?task=search&searchid=&advanced=1&s=&rspca_id=&animalType=196%2C197%2C84%2C155%2C2%2C2%2C15%2C3%2C3%2C16%2C158%2C162%2C83%2C80%2C15%2C16%2C86%2C156%2C154%2C159&breed=&breedHidden=&breed2=&breed2Hidden=&colour=&colour2=&sex=&size=1&declawed=&searchType=2&datelostfoundmonth=3&datelostfoundday=9&datelostfoundyear=2023&searchTypeRadio=2&sortBy=&find-submitbtn=Find+Animals'
@@ -77,19 +77,19 @@ def parse_animal_data(html):
     return animals
 
 
-new_url = 'http://bcspcapets.shelterbuddy.com/search/searchResults.asp?advanced=1&searchType=2&searchTypeRadio=2&searchTypeId=2&animalType=196%2C197%2C84%2C155%2C2%2C2%2C15%2C3%2C3%2C16%2C158%2C162%2C83%2C80%2C15%2C16%2C86%2C156%2C154%2C159&size=1&datelostfoundmonth=3&datelostfoundday=9&datelostfoundyear=2023&tpage=2&find%2Dsubmitbtn=Find+Animals&pagesize=10&task=view'
+new_url = 'http://bcspcapets.shelterbuddy.com/search/searchResults.asp?advanced=1&searchType=2&searchTypeRadio=2&animalType=196%2C197%2C84%2C155%2C2%2C2%2C15%2C3%2C3%2C16%2C158%2C162%2C83%2C80%2C15%2C16%2C86%2C156%2C154%2C159&size=1&sortBy=1&datelostfoundmonth=3&datelostfoundday=9&datelostfoundyear=2023&find-submitbtn=Find+Animals&pagesize=75&task=view&searchTypeId=2&tpage=1'
 
-# r = requests.get(new_url).text
+r = requests.get(new_url).text
 
-# with open('new.html', 'w') as f:
-#     f.write(r)
+with open('new.html', 'w') as f:
+    f.write(r)
 
-with open('new.html', 'r') as f:
-    r = f.read()
+# with open('new.html', 'r') as f:
+    # r = f.read()
 
 animals = parse_animal_data(r)
 
-for animal in animals:
-    for key, value in animal.items():
-        print(f'{key}: {value}')
-    print('-----------')
+animals_df = pd.DataFrame(animals)
+animals_df.to_csv('animals.csv', index=False)
+
+
