@@ -81,9 +81,6 @@ new_url = 'http://bcspcapets.shelterbuddy.com/search/searchResults.asp?advanced=
 
 r = requests.get(new_url).text
 
-with open('new.html', 'w') as f:
-    f.write(r)
-
 # with open('new.html', 'r') as f:
     # r = f.read()
 
