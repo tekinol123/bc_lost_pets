@@ -87,6 +87,7 @@ r = requests.get(new_url).text
 animals = parse_animal_data(r)
 
 animals_df = pd.DataFrame(animals)
+
 animals_df.to_csv('animals.csv', index=False, mode='a', header=False)
 
 # Next we need to install apache airflow and set this script to run daily. we also need to to fix the script so that it gets data on every page
