@@ -2,3 +2,4 @@ venv
 *.pbix
 logs
 plugins
+__pycache__
