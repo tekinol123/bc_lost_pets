@@ -1,2 +1,4 @@
 venv
 *.pbix
+logs
+plugins
