@@ -4,7 +4,7 @@ import re
 import json
 import pandas as pd
 from datetime import datetime
-from azure.storage.blob import BlobServiceClient, BlobClient, ContainerClient, __version__
+from azure.storage.blob import BlobServiceClient
 from dotenv import load_dotenv
 import os
 import io
@@ -146,5 +146,3 @@ blob_client.upload_blob(csv_file, overwrite=True)
 # animals_df.to_csv('animals.csv', index=False, mode='a', header=False)
 # animals_df.to_csv(f'./data/{datetime.now().date()}_animals.csv', index=False, mode='w', header=True)
 # Next we need to install apache airflow and set this script to run daily. we also need to to fix the script so that it gets data on every page
-
-

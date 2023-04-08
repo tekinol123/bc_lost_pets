@@ -76,6 +76,10 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
+    - ./scripts:/opt/airflow/scripts
+    - ./venv:/opt/airflow/venv
+    - ./.env:/opt/airflow/scripts/.env
+    - ./scripts/data:/opt/airflow/scripts/data
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on

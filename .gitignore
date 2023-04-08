@@ -5,3 +5,4 @@ plugins
 __pycache__
 .env
 development_files
+*.sql
