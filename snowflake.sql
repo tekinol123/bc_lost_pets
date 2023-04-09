@@ -1,3 +1,5 @@
+-- This is everything I did in Snowflake to get the data into the database
+
 CREATE ROLE MY_READ_ROLE;
 CREATE ROLE MY_WRITE_ROLE;
 CREATE ROLE MY_DDL_ROLE;
