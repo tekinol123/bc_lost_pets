@@ -10,7 +10,7 @@ virtualenv_path = '/opt/airflow/venv'
 
 # DAG configuration
 default_args = {
-    'owner': 'airflow',
+    'owner': 'diegofhdz',
     'depends_on_past': False,
     'email_on_failure': True,
     'email_on_retry': False,
