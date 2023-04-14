@@ -8,7 +8,7 @@ from azure.storage.blob import BlobServiceClient
 from dotenv import load_dotenv
 import os
 import io
-
+import pytz
 load_dotenv()
 
 connection_string = f"DefaultEndpointsProtocol=https;AccountName={os.environ['STORAGE_ACCOUNT_NAME']};AccountKey={os.environ['STORAGE_ACCOUNT_KEY']};EndpointSuffix=core.windows.net"
@@ -117,7 +117,7 @@ def parse_animal_data(html):
 new_url = 'http://bcspcapets.shelterbuddy.com/search/searchResults.asp?advanced=1&searchType=2&searchTypeRadio=2&animalType=196%2C197%2C84%2C155%2C2%2C2%2C15%2C3%2C3%2C16%2C158%2C162%2C83%2C80%2C15%2C16%2C86%2C156%2C154%2C159&size=1&sortBy=1&datelostfoundmonth=3&datelostfoundday=9&datelostfoundyear=2023&find-submitbtn=Find+Animals&pagesize=75&task=view&searchTypeId=2&tpage=1'
 
 r = requests.get(new_url).text
-
+pst = pytz.timezone('America/Los_Angeles')
 # with open('new.html', 'r') as f:
     # r = f.read()
 
@@ -129,6 +129,7 @@ animals_df = pd.DataFrame(animals)
 pattern = r"\s*\(\s*approx\s*\)\s*"
 animals_df['age'] = animals_df['age'].replace(pattern, '', regex=True)
 animals_df['age_in_days'] = animals_df['age'].apply(duration_to_days)
+animals_df['date_found']= datetime.now(tz=pst).date()
 # Reset the index and update the original DataFrame
 # animals_df.reset_index(drop=True, inplace=True)
 
@@ -139,7 +140,7 @@ csv_file = io.BytesIO()
 animals_df.to_csv(csv_file, index=False, mode='w', header=True, encoding='utf-8')
 csv_file.seek(0)
 
-blob_name = f'{datetime.now().date()}_animals.csv'
+blob_name = f'{datetime.now(tz=pst).date()}_animals.csv'
 blob_client = container_client.get_blob_client(blob_name)
 blob_client.upload_blob(csv_file, overwrite=True)
 
