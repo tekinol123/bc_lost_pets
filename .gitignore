@@ -6,3 +6,4 @@ __pycache__
 .env
 development_files
 data
+_scraper.py
