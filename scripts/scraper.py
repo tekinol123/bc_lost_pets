@@ -147,3 +147,4 @@ blob_client.upload_blob(csv_file, overwrite=True)
 # animals_df.to_csv('animals.csv', index=False, mode='a', header=False)
 # animals_df.to_csv(f'./data/{datetime.now().date()}_animals.csv', index=False, mode='w', header=True)
 # Next we need to install apache airflow and set this script to run daily. we also need to to fix the script so that it gets data on every page
+# NEED TO rewrite scraper to get more than 10 results
