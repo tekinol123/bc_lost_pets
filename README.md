@@ -6,7 +6,7 @@ I will be using python's requests and bs4 libraries to scrape the SPCA's lost pe
 This API is being served via a flask api. Using this api you can download the pet data directly to analyze the data however you wish. There is no api key required, the API is completely free to use. The api is callable at the url https://bcpetsapi.com , the endpoints are below.
 ### API Calls  
 All of the following calls are to be called using a 'get' method.
-### All pet data  
+### Endpoints  
 __"/api/all"__: Returns all available pet data    
 __"/api/daily"__: Returns pet data retrieved in the last day.  
 __"/api/week"__: Returns pet data retrieved in the last 7 days.  
