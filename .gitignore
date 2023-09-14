@@ -7,4 +7,6 @@ __pycache__
 development_files
 data
 _scraper.py
-azure-function-code
+scripts
+docker-compose.yaml
+dags
